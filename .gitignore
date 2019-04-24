@@ -22,3 +22,5 @@ composer.phar
 .DS_Store
 
 node_modules
+
+test_db.sqlite3
