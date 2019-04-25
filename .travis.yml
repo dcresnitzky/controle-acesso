@@ -5,12 +5,13 @@ env:
   global:
     - CC_TEST_REPORTER_ID=f555d436ead617649d9d3b3bbc92809bda908fcded93e535617ec73fab198c88
     - NODE_ENV=test
+script: npm test-with-coverage
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build -t lcov -o coverage/coverage.json coverage/lcov.info --exit-code $TRAVIS_TEST_RESULT
 install:
   - npm install
 branches:
