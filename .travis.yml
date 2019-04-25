@@ -2,12 +2,20 @@ language: node_js
 node_js:
   - "11.13"
 env:
-  - NODE_ENV=test
+  global:
+    - CC_TEST_REPORTER_ID=f555d436ead617649d9d3b3bbc92809bda908fcded93e535617ec73fab198c88
+    - NODE_ENV=test
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+install:
+  - npm install
 branches:
   only:
     - master
-before_script:
-  - npm install
 cache:
   directories:
     - "node_modules"
