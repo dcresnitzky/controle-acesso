@@ -11,7 +11,7 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 after_script:
-  - ./cc-test-reporter after-build -t lcov -o coverage/coverage.json coverage/lcov.info --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build -t lcov --debug --exit-code $TRAVIS_TEST_RESULT
 install:
   - npm install
 branches:
